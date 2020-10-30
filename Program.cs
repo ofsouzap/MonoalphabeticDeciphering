@@ -67,6 +67,7 @@ namespace MonoalphabeticDeciphering
         static string GetTextFromFile(string filename)
         {
 
+            Debug.Assert(File.Exists(filename));
             return File.ReadAllText(filename);
 
         }
@@ -229,6 +230,10 @@ namespace MonoalphabeticDeciphering
                         setChars.Remove(c);
                     }
 
+                }
+                else if (inputRequest == "PRINT MAPPING" || inputRequest == "PRINTMAPPING")
+                {
+                    PrintCharacterMapping(currentMapping);
                 }
                 else
                 {
@@ -435,6 +440,35 @@ namespace MonoalphabeticDeciphering
             }
 
             return difference;
+
+        }
+
+        public static void PrintCharacterMapping(Dictionary<char, char> mapping)
+        {
+
+            foreach (char c in validCharacters)
+            {
+
+                Console.Write(c + " ");
+
+            }
+            Console.WriteLine();
+
+            foreach (char c in validCharacters)
+            {
+
+                if (mapping.ContainsKey(c))
+                {
+                    Console.Write(mapping[c]);
+                }
+                else
+                {
+                    Console.Write(c);
+                }
+
+                Console.Write(" ");
+
+            }
 
         }
 

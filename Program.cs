@@ -446,6 +446,8 @@ namespace MonoalphabeticDeciphering
         public static void PrintCharacterMapping(Dictionary<char, char> mapping)
         {
 
+            Console.WriteLine("Decryption mapping:");
+
             foreach (char c in validCharacters)
             {
 
@@ -469,6 +471,37 @@ namespace MonoalphabeticDeciphering
                 Console.Write(" ");
 
             }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Encryption mapping:");
+
+            foreach (char c in validCharacters)
+            {
+
+                Console.Write(c + " ");
+
+            }
+            Console.WriteLine();
+
+            foreach (char c in validCharacters)
+            {
+
+                char? outputChar = null;
+
+                foreach (char key in mapping.Keys)
+                    if (mapping[key] == c)
+                        outputChar = key;
+
+                if (outputChar == null) outputChar = c;
+
+                Console.Write(outputChar + " ");
+
+            }
+            Console.WriteLine();
+
+            Console.Write("Press ENTER to continue...");
+            Console.ReadLine();
 
         }
 
